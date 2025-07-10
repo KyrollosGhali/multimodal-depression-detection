@@ -8,6 +8,11 @@ from langchain.prompts import PromptTemplate
 from langchain.document_loaders import DirectoryLoader
 from groq import Groq
 from langchain.memory import ConversationBufferMemory
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 from langchain.prompts import PromptTemplate
 from langchain.document_loaders import PyPDFLoader
 from deep_translator import GoogleTranslator
@@ -26,7 +31,9 @@ def make_punctuation_aware(text):
     {text}
     """
     # Set your Groq API Key
-    api_key="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"
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        raise ValueError("GROQ_API_KEY not found in environment variables. Please set it in your .env file.")
     client = Groq(api_key=api_key)
     chat_completion = client.chat.completions.create(
         model="meta-llama/llama-4-scout-17b-16e-instruct",  # You can change to "mixtral-8x7b-32768" or "gemma-7b-it"
@@ -53,7 +60,9 @@ def convert_to_egyptian(msa_sentence):
 {msa_sentence}
 """
     # Set your Groq API Key
-    api_key="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"
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        raise ValueError("GROQ_API_KEY not found in environment variables. Please set it in your .env file.")
     client = Groq(api_key=api_key)
     chat_completion = client.chat.completions.create(
         model="meta-llama/llama-4-scout-17b-16e-instruct",  # You can change to "mixtral-8x7b-32768" or "gemma-7b-it"
@@ -73,7 +82,9 @@ def convert_to_orianted(msg_sentence):
 {msg_sentence}
 """
     # Set your Groq API Key
-    api_key="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"
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        raise ValueError("GROQ_API_KEY not found in environment variables. Please set it in your .env file.")
     client = Groq(api_key=api_key)
     chat_completion = client.chat.completions.create(
         model="meta-llama/llama-guard-4-12b",  # You can change to "mixtral-8x7b-32768" or "gemma-7b-it"
@@ -105,9 +116,12 @@ def load_vector_db(persist_directory):
     )
     return vector_db
 def initialize_llm():
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        raise ValueError("GROQ_API_KEY not found in environment variables. Please set it in your .env file.")
     return ChatGroq(
         temperature=0.9,
-        api_key="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", 
+        api_key=api_key, 
         model_name="llama-3.1-8b-instant",
         max_tokens=256
     )
