@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EEG File Check</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/upload_eeg.css') }}">
+</head>
+<body>
+
+  <button class="exit-button" id="exit-btn">Exit 🚪</button>
+
+  <h1 id="question-title">Do you have an EEG file?</h1>
+
+  <div class="question-section" id="question-section">
+    <div class="button-group">
+      <button id="yes-btn">Yes</button>
+      <button id="no-btn">No</button>
+    </div>
+  </div>
+
+  <form id="upload-form" method="POST" action="/upload_eeg" enctype="multipart/form-data">
+    <div class="upload-section hidden" id="upload-section">
+      <div id="upload-label">Please select your EEG file (.edf or .bdf)</div>
+      <input type="file" name="eeg_file" id="eeg-file" accept=".edf,.bdf">
+    </div>
+    <button class="result-button hidden" id="result-btn" type="submit">Show Result</button>
+  </form>
+
+  <script src="{{ url_for('static', filename='JS/upload_eeg.js') }}"></script>
+</body>
+</html>

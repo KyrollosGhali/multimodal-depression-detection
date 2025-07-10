@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="{{ lang or 'en' }}">
+<head>
+  <meta charset="UTF-8">
+  <title>{% if lang == 'ar' %}النتيجة{% elif lang == 'fr' %}Résultat{% elif lang == 'de' %}Ergebnis{% else %}Result{% endif %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/result.css') }}">
+</head>
+<body>
+
+  <div class="progress-ring">
+    <div class="circle-container" id="score-value">--%</div>
+  </div>
+
+  <!-- <div class="results-section" id="detailed-results"></div> -->
+  <div class="results-section" id="score-description"></div>
+  <button class="home-button" onclick="goHome()" id="home-btn">Home</button>
+
+  <script>
+    const score = parseInt("{{ score or 0 }}");
+    const progressRing = document.querySelector(".progress-ring");
+    const percent = Math.min(Math.max(score, 0), 100);
+    progressRing.style.background = `conic-gradient(#ffe084 0% ${percent}%, transparent ${percent}% 100%)`;
+
+    // Parse all values safely, even if missing or null
+    // const audio = "{{ audio_prediction }}" !== "None" ? parseFloat("{{ audio_prediction }}") : NaN;
+    // const video = "{{ video_prediction }}" !== "None" ? parseFloat("{{ video_prediction }}") : NaN;
+    // const text = "{{ text_prediction }}" !== "None" ? parseFloat("{{ text_prediction }}") : NaN;
+    // const eeg = "{{ eeg_prediction }}" !== "None" ? parseFloat("{{ eeg_prediction }}") : NaN;
+
+    const language = localStorage.getItem("selected_language") || "{{ lang or 'en' }}";
+  </script>
+  <script src="{{ url_for('static', filename='JS/result.js') }}"></script>
+</body>
+</html>

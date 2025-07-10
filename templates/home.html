@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #6b8e6d, #a0623d); 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    h1 {
+      color: #ffffff;
+      margin-bottom: 40px;
+      font-size: 2.8rem;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); 
+    }
+
+    form {
+      width: 100%;
+      max-width: 500px;
+      text-align: left;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      font-size: 1.3rem;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #8e513b;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #5a2d1d;
+    }
+
+    @media (max-width: 600px) {
+      form {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Let’s begin your test</h1>
+
+  <form action="/start_chat" method="post" id="start-form">
+    <label for="gender">Select your gender:</label>
+    <select name="gender" id="gender" required>
+      <option value="">-- Choose --</option>
+      <option value="female">Female</option>
+      <option value="male">Male</option>
+    </select>
+
+    <label for="language">Select your preferred language:</label>
+    <select name="language" id="language" required>
+      <option value="">-- Choose --</option>
+      <option value="en">English</option>
+      <option value="ar">Arabic</option>
+      <option value="de">German</option>
+      <option value="fr">French</option>
+    </select>
+
+    <label for="chat_voice">Select chatbot voice:</label>
+    <select name="chat_voice" id="chat_voice" required>
+      <option value="">-- Choose --</option>
+      <option value="female">Female voice</option>
+      <option value="male">Male voice</option>
+    </select>
+
+    <button type="submit">Start</button>
+  </form>
+
+  <script>
+    document.getElementById("start-form").addEventListener("submit", function () {
+      const gender = document.getElementById("gender").value;
+      const language = document.getElementById("language").value;
+      const chatVoice = document.getElementById("chat_voice").value;
+
+      localStorage.setItem("selected_gender", gender);
+      localStorage.setItem("selected_language", language);
+      localStorage.setItem("chat_voice", chatVoice);
+    });
+  </script>
+
+</body>
+</html>

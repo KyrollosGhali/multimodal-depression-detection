@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="UTF-8">
+  <title>{% if lang == 'ar' %}جاري التحليل{% elif lang == 'fr' %}Analyse en cours{% elif lang == 'de' %}Analyse läuft{% else %}Processing{% endif %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/processing.css') }}">
+  
+</head>
+<body>
+
+  <div class="spinner"></div>
+  <div class="loading-text" id="loading-text">Loading...</div>
+
+  <script src="{{ url_for('static', filename='JS/processing.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chat Support</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/chat.css') }}">
+</head>
+<body>
+  <div class="header">
+    <h2 id="header-title">Support Session with Yoka</h2>
+    <button class="exit-button" id="exit-btn">
+      <span id="exit-text">Exit</span> 🚪
+    </button>
+  </div>
+
+  <div class="chat-container">
+    <img class="chat-image" id="chat-image" src="{{ url_for('static', filename='images/OIP.webp') }}" alt="Chat Support" />
+  </div>
+
+  <!-- ✅ تم إضافة الكلاس hidden هنا -->
+  <video id="user-video" class="hidden" autoplay muted playsinline></video>
+
+  <div class="bottom-buttons">
+    <div style="display: flex; flex-direction: column; gap: 15px;">
+      <button class="start-session" id="start-session-btn">Start Session</button>
+      <button class="camera-toggle" id="toggle-camera-btn">Toggle Camera</button>
+      <button class="next-button" id="next-btn" disabled>Next</button>
+    </div>
+  </div>
+
+  <div class="loading-overlay" id="loading-screen" style="display: none;">
+    <div class="spinner"></div>
+    <div id="loading-text">Loading...</div>
+  </div>
+
+  <input type="hidden" id="session-lang" value="{{ session['lang'] or 'en' }}">
+  <script src="{{ url_for('static', filename='JS/chat.js') }}" defer></script>
+</body>
+</html>
